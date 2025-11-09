@@ -1,18 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalpha.c                                       :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oumahi <oumahi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/14 21:35:56 by oumahi            #+#    #+#             */
-/*   Updated: 2025/10/14 22:42:52 by oumahi           ###   ########.fr       */
+/*   Created: 2025/11/09 00:48:42 by oumahi            #+#    #+#             */
+/*   Updated: 2025/11/09 15:36:45 by oumahi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"libft.h"
-
-int	ft_isalpha(int c)
+char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
-	return ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'));
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	if (little[0] == '\0')
+		return ((char *)big);
+	while (i < len && big[i])
+	{
+		j = 0;
+		while (big[i + j] && big[i + j] == little[j] && i + j < len)
+		{
+			j++;
+			if( little[j] == '\0')
+				return ((char *)(big + i));
+		}
+		i++;
+	}
+	return NULL;
 }
+
